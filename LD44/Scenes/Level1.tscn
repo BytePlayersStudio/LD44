@@ -10,9 +10,7 @@
 [node name="Navigation2D" type="Navigation2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="Player" parent="." groups=[
-"player",
-] instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 176.897, 150.732 )
 
 [node name="LifeSource" parent="." instance=ExtResource( 3 )]

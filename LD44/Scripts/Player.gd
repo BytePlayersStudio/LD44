@@ -7,7 +7,7 @@ onready var gunPivot : Position2D = get_node("GunPivot")
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
 onready var absorbArea : Area2D =  get_node("AbsorbArea") 
 
-export var speed = 500;
+export var speed = 200;
 export var absorbed_life : float = 50
 
 

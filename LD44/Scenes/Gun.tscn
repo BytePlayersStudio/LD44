@@ -10,12 +10,12 @@ bullet_res = ExtResource( 2 )
 
 [node name="GunSprite" type="Sprite" parent="."]
 position = Vector2( 0, -5.96046e-008 )
-scale = Vector2( 1, 0.28 )
+scale = Vector2( 0.333317, 0.0933289 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, 2.38419e-007 )
 
 [node name="BulletSpawn" type="Position2D" parent="."]
-position = Vector2( 37.6484, 0 )
+position = Vector2( 12.5569, 0 )
 
 [node name="CooldownTimer" type="Timer" parent="."]
 

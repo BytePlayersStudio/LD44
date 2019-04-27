@@ -11,7 +11,7 @@ enum states {
 }
 
 export var navigation_stop_threshold = 5
-export var speed = 450
+export var speed = 150
 
 onready var navigation = Global.navigation
 
