@@ -11,7 +11,8 @@ enum states {
 }
 
 export var navigation_stop_threshold = 5
-export var speed = 150
+export var speed = 1
+export var distance_to_attack = 100
 
 onready var navigation = Global.navigation
 
@@ -21,6 +22,7 @@ var player : player
 var destination
 var path = []
 var motion = Vector2()
+
 
 
 func _ready():
@@ -48,28 +50,32 @@ func _physics_process(delta):
 	
 
 func spawn():
+	#Play Spawn Animation
+	change_state(states.CHASE)
 	pass
 
+
 func chase():
-	pass
-	
+	_navigate()
+
+
 func idle():
 	pass
-	
+
+
 func attack():
-	pass
-	
+	var distance_to_destination = position.distance_to(player.global_position)
+	if distance_to_destination > distance_to_attack:
+		change_state(states.CHASE)
+
+
 func die():
 	pass
 
 
-
-func _process(delta):
-	_navigate()
-
-
 func on_hit():
 	queue_free()
+
 
 func _navigate():
 	var distance_to_destination = position.distance_to(path[0])
@@ -77,6 +83,9 @@ func _navigate():
 	
 	if distance_to_destination > navigation_stop_threshold:
 		_move()
+	elif distance_to_destination <= distance_to_attack:
+		change_state(states.ATTACK)
+		_update_path()
 	else:
 		_update_path()
 
@@ -89,8 +98,8 @@ func _move():
 	
 	
 	move_and_slide(motion)
-	
-	
+
+
 func _update_path():
 	if path.size() > 1:
 		path.remove(0)
@@ -101,9 +110,10 @@ func _update_path():
 func _make_path():
 	destination = player.global_position
 	path = navigation.get_simple_path(global_position, destination, false)
-	#line2D.points = path
 
-
+func change_state(new_state):
+	current_state = new_state
+	print(current_state)
 
 
 
