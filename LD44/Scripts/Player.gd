@@ -5,9 +5,13 @@ signal player_position_updated
 class_name player
 
 
-onready var gunPivot : Position2D = get_node("GunPivot")
+onready var gun_pivot : Position2D = get_node("GunPivot")
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
 onready var absorbArea : Area2D =  get_node("AbsorbArea") 
+onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
+onready var player_sprite : Sprite = get_node("PlayerSprite")
+onready var hand_sprite : Sprite = get_node("GunPivot/Hand")
+
 
 export var speed = 200;
 export var absorbed_life : float = 50
@@ -30,13 +34,36 @@ func _physics_process(delta):
 
 
 func control_gun(delta) -> void:
-	gunPivot.look_at(get_global_mouse_position())
+	gun_pivot.look_at(get_global_mouse_position())
+	control_animations(gun_pivot)
 	if Input.is_action_pressed("shoot"):
 		player_gun.shoot()
 	if Input.is_action_just_pressed("absorb_life"):
 		#Maybe use a timer to use the ability
 		absorb_life()
+
+func control_animations(pivot : Position2D):
+	var current_rotation = fmod(pivot.rotation_degrees, 360)
+	if current_rotation < 0:
+		current_rotation += 360
+	
+	if current_rotation <= 270 and current_rotation >= 90:
+		player_sprite.set_flip_h(true)
 		
+	else:
+		player_sprite.set_flip_h(false)
+	
+	if current_rotation >= 0 and current_rotation <= 180:
+		if get_input_direction():
+			anim_player.play("run")
+		else:
+			anim_player.play("idle")
+	else:
+		if get_input_direction():
+			anim_player.play("run_back")
+		else:
+			anim_player.play("idle_back")
+
 
 func move(delta) -> void:
 	move_and_slide(get_input_direction().normalized() * speed)

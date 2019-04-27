@@ -113,7 +113,7 @@ func _make_path():
 
 func change_state(new_state):
 	current_state = new_state
-	print(current_state)
+	#print(current_state)
 
 
 
