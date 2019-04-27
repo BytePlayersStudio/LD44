@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-class_name Bullet
+class_name bullet
 
 var velocity
 export var speed = 100

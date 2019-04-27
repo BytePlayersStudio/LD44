@@ -1,8 +1,8 @@
 extends Node2D
 
-class_name Gun
+class_name gun
 
-export (PackedScene) var Bullet
+export (PackedScene) var bullet_res
 export var cooldown : float = .5
 
 onready var bullet_spawn : Position2D = get_node("BulletSpawn")
@@ -12,14 +12,14 @@ var can_shoot : bool = true
 
 func _ready() -> void:
 	cooldown_timer.wait_time = cooldown
-	if Bullet == null:
+	if bullet_res == null:
 		print("Please add a Bullet scene to the Gun")
 
 func shoot() -> void:
 	if can_shoot:
 		can_shoot = false
 		cooldown_timer.start()
-		var b = Bullet.instance()
+		var b = bullet_res.instance()
 		b.start(bullet_spawn.global_position, bullet_spawn.global_rotation)
 		get_tree().get_root().add_child(b)
 

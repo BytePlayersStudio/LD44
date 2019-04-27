@@ -10,24 +10,30 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "Bullet",
+"class": "bullet",
 "language": "GDScript",
 "path": "res://Scripts/Bullet.gd"
 }, {
 "base": "Node2D",
-"class": "Gun",
+"class": "gun",
 "language": "GDScript",
 "path": "res://Scripts/Gun.gd"
 }, {
+"base": "Area2D",
+"class": "life_source",
+"language": "GDScript",
+"path": "res://Scripts/LifeSource.gd"
+}, {
 "base": "KinematicBody2D",
-"class": "Player",
+"class": "player",
 "language": "GDScript",
 "path": "res://Scripts/Player.gd"
 } ]
 _global_script_class_icons={
-"Bullet": "",
-"Gun": "",
-"Player": ""
+"bullet": "",
+"gun": "",
+"life_source": "",
+"player": ""
 }
 
 [application]
