@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal player_position_updated
+
 class_name player
 
 
@@ -38,6 +40,7 @@ func control_gun(delta) -> void:
 
 func move(delta) -> void:
 	move_and_slide(get_input_direction().normalized() * speed)
+
 
 func absorb_life():
 	overlapping_life_sources = absorbArea.get_overlapping_areas()

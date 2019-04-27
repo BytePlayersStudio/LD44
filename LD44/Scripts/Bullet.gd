@@ -12,6 +12,10 @@ func start(pos, dir) -> void:
 
 func _physics_process(delta) -> void:
 	var collision = move_and_collide(velocity * delta)
+	if collision:
+		if collision.collider.has_method('on_hit'):
+			collision.collider.on_hit()
+			on_hit()
 	
 func on_hit():
 	queue_free()
