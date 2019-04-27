@@ -5,12 +5,12 @@ class_name Bullet
 var velocity
 export var speed = 100
 
-func start(pos, dir):
+func start(pos, dir) -> void:
 	rotation = dir
 	position = pos
 	velocity = Vector2(speed,0).rotated(rotation)
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	var collision = move_and_collide(velocity * delta)
 	
 func on_hit():

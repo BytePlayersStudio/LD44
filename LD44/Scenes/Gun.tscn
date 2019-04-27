@@ -17,3 +17,6 @@ offset = Vector2( 0, 2.38419e-007 )
 [node name="BulletSpawn" type="Position2D" parent="."]
 position = Vector2( 37.6484, 0 )
 
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
