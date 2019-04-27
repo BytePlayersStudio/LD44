@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Bullet.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "enemy",
+"language": "GDScript",
+"path": "res://Scenes/NPCs/Enemy.gd"
+}, {
 "base": "Node2D",
 "class": "gun",
 "language": "GDScript",
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "bullet": "",
+"enemy": "",
 "gun": "",
 "life_source": "",
 "player": ""

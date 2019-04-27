@@ -6,7 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.97203, 7.25444 )
 
-[node name="LifeSource" type="Area2D"]
+[node name="LifeSource" type="Area2D" groups=[
+"life_source",
+]]
 collision_layer = 9
 script = ExtResource( 1 )
 

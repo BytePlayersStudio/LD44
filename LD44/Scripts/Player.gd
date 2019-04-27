@@ -9,10 +9,14 @@ onready var absorbArea : Area2D =  get_node("AbsorbArea")
 
 export var speed = 500;
 export var absorbed_life : float = 50
-export var life_per_life_source : float = 20 #TODO: move this variable to the LifeSource script. CHAPUZA
+
 
 var move_direction = Vector2(0,0)
 var overlapping_life_sources = []
+
+func _ready():
+	for life_source in get_tree().get_nodes_in_group('life_source'):
+		life_source.connect("absorbed_life_updated",self,'_on_absorbed_life_updated')
 
 
 func _process(delta) -> void:
@@ -36,18 +40,16 @@ func move(delta) -> void:
 	move_and_slide(get_input_direction().normalized() * speed)
 
 func absorb_life():
-	#TODO: Be aware that we have to deactivate the life sources somehow, maybe sending a signal to all of the life_sources
-	#in the overlapping_life_sources array.
 	overlapping_life_sources = absorbArea.get_overlapping_areas()
-	absorbed_life += life_per_life_source * overlapping_life_sources.size()
 	for life_source in overlapping_life_sources:
-		if life_source.has_method('kill_life_source'): #FIXME: No me molan referncias por string
+		if life_source.has_method('kill_life_source'): 
 			life_source.kill_life_source()
-		
-	#TODO: Send absorbed_life to the GUI every time it updates.
 	print(overlapping_life_sources)
 	print(absorbed_life)
 
+func _on_absorbed_life_updated(life_source_life):
+	#TODO: Send absorbed_life to the GUI every time it updates.
+	absorbed_life += life_source_life
 
 func get_input_direction() -> Vector2:
 	var input_direction = Vector2()
