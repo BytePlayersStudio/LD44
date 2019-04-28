@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/LifeSource.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Actors/Plant/Plant1.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Actors/Plant/Plant2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Actors/Plant/Plant2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Actors/Plant/Plant1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Art/Actors/Plant/PlantDead1.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Art/Actors/Plant/PlantDead2.png" type="Texture" id=5]
 
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 3 ) ]
+"values": [ ExtResource( 3 ), ExtResource( 2 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 3 ) ]
 }
 
 [node name="LifeSource" type="Area2D" groups=[
