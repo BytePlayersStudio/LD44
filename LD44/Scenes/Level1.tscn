@@ -9,15 +9,12 @@
 [ext_resource path="res://Scenes/NPCs/Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 256.488, 207.025, 456.488, 359.025, -23.5123, 359.025, 224.488, 207.025, 456.488, -24.9754, 256.488, 111.025, 240.488, 111.025, 240.488, 95.0246, 144.488, 95.0246, 144.488, 111.025, 128.488, 111.025, -23.5123, -24.9754, 128.488, 143.025, 112.488, 143.025, 192.488, 191.025, 128.488, 191.025, 128.488, 159.025, 144.488, 159.025, 144.488, 127.025, 160.488, 127.025, 224.488, 191.025, 160.488, 111.025, 224.488, 111.025, 224.488, 127.025, 240.488, 127.025, 240.488, 191.025, 192.488, 207.025, 112.488, 207.025 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 0, 5 ), PoolIntArray( 5, 6, 7, 4 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 10, 12, 13, 11 ), PoolIntArray( 14, 15, 16, 17 ), PoolIntArray( 17, 18, 19, 20, 14 ), PoolIntArray( 19, 21, 22, 23 ), PoolIntArray( 23, 24, 25, 20 ), PoolIntArray( 19, 23, 20 ), PoolIntArray( 26, 14, 20, 3 ), PoolIntArray( 26, 3, 2 ), PoolIntArray( 27, 26, 2 ), PoolIntArray( 27, 2, 11, 13 ), PoolIntArray( 8, 11, 4, 7 ) ]
-outlines = [ PoolVector2Array( -23.5123, -24.9754, -23.5123, 359.025, 456.488, 359.025, 456.488, -24.9754 ), PoolVector2Array( 192.488, 207.025, 112.488, 207.025, 112.488, 143.025, 128.488, 143.025, 128.488, 111.025, 144.488, 111.025, 144.488, 95.0246, 240.488, 95.0246, 240.488, 111.025, 256.488, 111.025, 256.488, 207.025, 224.488, 207.025, 224.488, 191.025, 240.488, 191.025, 240.488, 127.025, 224.488, 127.025, 224.488, 111.025, 160.488, 111.025, 160.488, 127.025, 144.488, 127.025, 144.488, 159.025, 128.488, 159.025, 128.488, 191.025, 192.488, 191.025 ) ]
+vertices = PoolVector2Array( 311.588, 85.5247, 311.588, 213.525, 55.5876, 213.525, 55.5876, 85.5247, 311.588, -122.475, 311.588, 5.52466, 55.5876, 5.52466, 55.5876, -122.475, 159.588, -186.475, -120.412, -186.475, -120.412, -346.475, 535.588, -650.475, 487.588, -346.475, -168.412, -346.475, -168.412, -650.475, 535.588, -346.475, 487.588, -186.475 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11, 12 ), PoolIntArray( 10, 13, 14, 11 ), PoolIntArray( 11, 15, 12 ), PoolIntArray( 16, 8, 12 ) ]
+outlines = [ PoolVector2Array( 55.5876, 85.5247, 55.5876, 213.525, 311.588, 213.525, 311.588, 85.5247 ), PoolVector2Array( 55.5876, -122.475, 55.5876, 5.52466, 311.588, 5.52466, 311.588, -122.475 ), PoolVector2Array( 159.588, -186.475, -120.412, -186.475, -120.412, -346.475, -168.412, -346.475, -168.412, -650.475, 535.588, -650.475, 535.588, -346.475, 487.588, -346.475, 487.588, -186.475 ) ]
 
 [node name="Level1" type="Node2D"]
 position = Vector2( 1720.9, 1225.5 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 editor/display_folded = true
@@ -30,7 +27,7 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="Walls" type="TileMap" parent="."]
-z_index = -2
+z_index = -1
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -46,7 +43,6 @@ tile_data = PoolIntArray( -4587518, 0, 2, -4587517, 0, 3, -4587516, 0, 3, -45875
 script = ExtResource( 3 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
-visible = false
 position = Vector2( -0.487671, 0.975357 )
 navpoly = SubResource( 1 )
 
@@ -71,7 +67,7 @@ position = Vector2( 176.897, 150.732 )
 
 [node name="RandomDestinations" type="Node2D" parent="."]
 editor/display_folded = true
-visible = false
+position = Vector2( -32.9, -585.5 )
 script = ExtResource( 6 )
 
 [node name="randDest_1" type="Position2D" parent="RandomDestinations"]
@@ -99,27 +95,8 @@ position = Vector2( 6.82278, 151.662 )
 position = Vector2( 184.792, 339.691 )
 
 [node name="Enemies" type="Node2D" parent="."]
-visible = false
-position = Vector2( 560.49, -255.5 )
+position = Vector2( 71.1, 102.5 )
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 56, 72 )
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 400, 29.9999 )
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 416, 272 )
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 384, 141.732 )
-
-[node name="Enemy5" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 40, 328 )
-
-[node name="Enemy6" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 288, 320 )
-
-[node name="Enemy7" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 272, 56 )
 
