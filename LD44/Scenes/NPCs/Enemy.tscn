@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Actors/Shadow.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Art/Actors/Crab/Crab1.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Art/Actors/Crab/Crab2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Art/Actors/Crab/CrabUndead2.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Effects.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -24,7 +25,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 3 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "chase_alive"
 loop = true
 tracks/0/type = "value"
@@ -77,10 +78,12 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/SETUP = SubResource( 2 )
-anims/chase_alive = SubResource( 5 )
+anims/chase_alive = SubResource( 3 )
 anims/chase_undead = SubResource( 4 )
 
 [node name="IdleTimer" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="Effects" parent="." instance=ExtResource( 7 )]
 
 [connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]

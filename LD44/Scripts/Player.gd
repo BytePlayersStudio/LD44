@@ -17,7 +17,7 @@ onready var gun_sprite : Sprite = get_node("GunPivot/GunPosition/Gun").get_child
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
 onready var absorbArea : Area2D =  get_node("AbsorbArea") 
 onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
-onready var effects_player : AnimationPlayer = get_node("EffectsPlayer")
+onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")
 onready var player_sprite : Sprite = get_node("PlayerSprite")
 onready var hand_sprite : Sprite = get_node("GunPivot/Hand")
 
