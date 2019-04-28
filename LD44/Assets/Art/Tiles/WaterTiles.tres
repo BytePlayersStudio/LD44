@@ -1,0 +1,24 @@
+[gd_resource type="TileSet" load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Art/Tiles/Water1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Art/Tiles/Water2.png" type="Texture" id=2]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 2
+fps = 1.0
+frame_0/texture = ExtResource( 1 )
+frame_1/texture = ExtResource( 2 )
+frame_1/delay_sec = 0.0
+
+[resource]
+0/name = "Water.png 0"
+0/texture = SubResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+
