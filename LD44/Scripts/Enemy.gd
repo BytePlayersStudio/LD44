@@ -20,6 +20,7 @@ onready var enemy_sprite = get_node("EnemySprite")
 onready var collision_shape = get_node("CollisionShape2D")
 onready var idle_timer = get_node("IdleTimer")
 onready var anim_player = get_node('AnimationPlayer')
+onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")
 
 
 var current_state = null
@@ -72,7 +73,7 @@ func alive():
 
 
 func on_hit():
-	enemy_sprite.set_modulate(Color(1,1,1,1))
+	effects_player.play("absorb_particles")
 	collision_shape.disabled = true
 	speed = alive_speed
 	
