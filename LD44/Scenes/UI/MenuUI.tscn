@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Art/Actors/Anton/Idle/AntonIdle1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Art/Actors/Anton/Idle/AntonIdle2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Actors/Anton/Idle/AntonIdle3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Actors/Anton/Idle/AntonIdle4.png" type="Texture" id=4]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 4
+frame_0/texture = ExtResource( 1 )
+frame_1/texture = ExtResource( 2 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 3 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 4 )
+frame_3/delay_sec = 0.0
+
+[node name="MenuUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 96.3772
+margin_top = 52.532
+margin_right = 153.377
+margin_bottom = 120.532
+rect_clip_content = true
+
+[node name="PlayBtn" type="Button" parent="VBoxContainer"]
+margin_right = 57.0
+margin_bottom = 20.0
+text = "Play"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 57.0
+margin_bottom = 44.0
+text = "Credits"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 57.0
+margin_bottom = 68.0
+text = "Exit"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 116.578
+margin_top = 23.254
+margin_right = 134.578
+margin_bottom = 42.254
+texture = SubResource( 1 )
+
