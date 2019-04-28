@@ -94,9 +94,10 @@ func move(delta) -> void:
 	move_and_slide(get_input_direction().normalized() * speed)
 	for i in range(get_slide_count() - 1):
 		var collision = get_slide_collision(i)
-		var script_name : String = collision.collider.get_script().get_name()
-		if script_name.find("Enemy"):
-			kill()
+		if collision.collider.get_script() != null:
+			var script_name : String = collision.collider.get_script().get_name()
+			if script_name.find("Enemy"):
+				kill()
 		
 func kill():
 	#current_state = states.DEAD
