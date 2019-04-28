@@ -81,11 +81,18 @@ func move(delta) -> void:
 
 
 func absorb_life():
-	effects_player.play("absorb")
+	var didAbsorb = false
+	
 	overlapping_life_sources = absorbArea.get_overlapping_areas()
 	for life_source in overlapping_life_sources:
 		if life_source.has_method('kill_life_source'): 
+			didAbsorb = true
 			life_source.kill_life_source()
+	
+	if didAbsorb:
+		effects_player.play("absorb")
+	else:
+		effects_player.play("try_absorb")
 #	print(overlapping_life_sources)
 #	print(absorbed_life)
 
