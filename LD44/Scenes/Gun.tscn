@@ -2,20 +2,18 @@
 
 [ext_resource path="res://Scripts/Gun.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Actors/Anton/Gun.png" type="Texture" id=3]
 
 [node name="Gun" type="Node2D"]
 script = ExtResource( 1 )
 bullet_res = ExtResource( 2 )
 
 [node name="GunSprite" type="Sprite" parent="."]
-position = Vector2( 0, -5.96046e-008 )
-scale = Vector2( 0.333317, 0.0933289 )
+position = Vector2( 4.5, -1 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, 2.38419e-007 )
 
 [node name="BulletSpawn" type="Position2D" parent="."]
-position = Vector2( 12.5569, 0 )
+position = Vector2( 11, -3.5 )
 
 [node name="CooldownTimer" type="Timer" parent="."]
 
