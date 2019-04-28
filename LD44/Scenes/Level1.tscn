@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/UI/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Navigation/Navigation2D.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Destinations/RandomDestinations.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/NPCs/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/EnemySpawner.tscn" type="PackedScene" id=8]
 
 [node name="Level1" type="Node2D"]
 
@@ -16,6 +17,7 @@ editor/display_folded = true
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 1 )]
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
@@ -74,4 +76,12 @@ position = Vector2( 184.792, 339.691 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 7 )]
+
+[node name="EnemySpawner" parent="Enemies" instance=ExtResource( 8 )]
+
+[node name="Position2D4" type="Position2D" parent="Enemies/EnemySpawner"]
+position = Vector2( 126.288, 193.607 )
+
+[node name="Position2D3" type="Position2D" parent="Enemies/EnemySpawner"]
+position = Vector2( 237.882, 163.858 )
 

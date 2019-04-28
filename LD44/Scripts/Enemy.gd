@@ -31,7 +31,7 @@ var motion = Vector2()
 
 
 func _ready():
-
+	print('spawned')
 	for p in get_tree().get_nodes_in_group('player'):
 		player = p
 	destination = player.global_position
