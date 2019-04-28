@@ -68,13 +68,13 @@ func control_animations(pivot : Position2D):
 	var current_rotation = fmod(pivot.rotation_degrees, 360)
 	if current_rotation < 0:
 		current_rotation += 360
-	print(current_rotation)
+	#print(current_rotation)
 	if current_rotation <= 270 and current_rotation >= 90:
 		player_sprite.set_flip_h(true)
-		gun_sprite.set_flip_v(true)
+		player_gun.set_scale(Vector2(1, -1))
 	else:
 		player_sprite.set_flip_h(false)
-		gun_sprite.set_flip_v(false)
+		player_gun.set_scale(Vector2(1, 1))
 	
 	if current_rotation >= 0 and current_rotation <= 180:
 		hand_sprite.z_index = self.z_index + 1

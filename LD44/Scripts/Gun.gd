@@ -23,7 +23,12 @@ func shoot() -> void:
 		can_shoot = false
 		cooldown_timer.start()
 		var b = bullet_res.instance()
-		b.start(bullet_spawn.global_position, bullet_spawn.global_rotation)
+		var rot = bullet_spawn.global_rotation
+		
+		if self.get_scale() != Vector2(1, 1):
+			rot = -rot
+		
+		b.start(bullet_spawn.global_position, rot)
 		get_tree().get_root().add_child(b)
 
 

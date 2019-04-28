@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Gun.png-d221bce717cef491703bc6545d9cdf3e.stex"
+path="res://.import/Gun.png-13dc9bb1d12438975080f78251a18bf1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Actors/Anton/Gun.png"
-dest_files=[ "res://.import/Gun.png-d221bce717cef491703bc6545d9cdf3e.stex" ]
+source_file="res://Assets/Art/Weapons/Gun.png"
+dest_files=[ "res://.import/Gun.png-13dc9bb1d12438975080f78251a18bf1.stex" ]
 
 [params]
 
