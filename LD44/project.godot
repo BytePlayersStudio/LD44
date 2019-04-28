@@ -46,7 +46,7 @@ _global_script_class_icons={
 
 config/name="LudumDare44"
 run/main_scene="res://Scenes/Level1.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/Art/Actors/Anton/Idle/AntonIdle2.png"
 
 [autoload]
 
