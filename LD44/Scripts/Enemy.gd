@@ -7,12 +7,11 @@ enum states {
 	IDLE,
 	CHASE,
 	ATTACK,
-	DIE
+	ALIVE #Patrol behaviour
 }
 
 export var navigation_stop_threshold = 5
 export var speed = 1
-export var distance_to_attack = 100
 
 onready var navigation = Global.navigation
 
@@ -29,7 +28,6 @@ func _ready():
 
 	for p in get_tree().get_nodes_in_group('player'):
 		player = p
-	player.connect('player_position_updated',self,'_update_path')
 	destination = player.global_position
 	current_state = states.SPAWN
 	_make_path() 
@@ -43,17 +41,14 @@ func _physics_process(delta):
 			idle()
 		states.CHASE:
 			chase()
-		states.ATTACK:
-			attack()
-		states.DIE:
-			die()
+		states.ALIVE:
+			alive()
 	
 
 func spawn():
 	#Play Spawn Animation
 	change_state(states.CHASE)
 	pass
-
 
 func chase():
 	_navigate()
@@ -63,13 +58,7 @@ func idle():
 	pass
 
 
-func attack():
-	var distance_to_destination = position.distance_to(player.global_position)
-	if distance_to_destination > distance_to_attack:
-		change_state(states.CHASE)
-
-
-func die():
+func alive():
 	pass
 
 
@@ -83,9 +72,6 @@ func _navigate():
 	
 	if distance_to_destination > navigation_stop_threshold:
 		_move()
-	elif distance_to_destination <= distance_to_attack:
-		change_state(states.ATTACK)
-		_update_path()
 	else:
 		_update_path()
 

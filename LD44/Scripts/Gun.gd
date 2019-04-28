@@ -1,5 +1,7 @@
 extends Node2D
 
+signal gun_shot
+
 class_name gun
 
 export (PackedScene) var bullet_res
@@ -17,6 +19,7 @@ func _ready() -> void:
 
 func shoot() -> void:
 	if can_shoot:
+		emit_signal('gun_shot')
 		can_shoot = false
 		cooldown_timer.start()
 		var b = bullet_res.instance()

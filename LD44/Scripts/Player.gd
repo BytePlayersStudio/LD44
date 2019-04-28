@@ -1,10 +1,11 @@
 extends KinematicBody2D
 
-signal player_position_updated
+signal update_UI_lives_label(absorbed_life)
 
 class_name player
 
 
+onready var UI = Global.UI
 onready var gun_pivot : Position2D = get_node("GunPivot")
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
 onready var absorbArea : Area2D =  get_node("AbsorbArea") 
@@ -15,12 +16,16 @@ onready var hand_sprite : Sprite = get_node("GunPivot/Hand")
 
 export var speed = 200;
 export var absorbed_life : float = 50
+export var lives_per_bullet : float = 1
 
 
 var move_direction = Vector2(0,0)
 var overlapping_life_sources = []
 
 func _ready():
+	self.connect("update_UI_lives_label", UI, 'update_lives_label')
+	emit_signal("update_UI_lives_label", absorbed_life)
+	player_gun.connect('gun_shot', self, '_on_gun_shot')
 	for life_source in get_tree().get_nodes_in_group('life_source'):
 		life_source.connect("absorbed_life_updated",self,'_on_absorbed_life_updated')
 
@@ -41,6 +46,7 @@ func control_gun(delta) -> void:
 	if Input.is_action_just_pressed("absorb_life"):
 		#Maybe use a timer to use the ability
 		absorb_life()
+
 
 func control_animations(pivot : Position2D):
 	var current_rotation = fmod(pivot.rotation_degrees, 360)
@@ -77,9 +83,17 @@ func absorb_life():
 	print(overlapping_life_sources)
 	print(absorbed_life)
 
+
 func _on_absorbed_life_updated(life_source_life):
 	#TODO: Send absorbed_life to the GUI every time it updates.
 	absorbed_life += life_source_life
+	emit_signal("update_UI_lives_label", absorbed_life)
+
+
+func _on_gun_shot():
+	absorbed_life -= lives_per_bullet
+	emit_signal("update_UI_lives_label", absorbed_life)
+
 
 func get_input_direction() -> Vector2:
 	var input_direction = Vector2()
