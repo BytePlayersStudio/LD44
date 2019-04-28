@@ -10,6 +10,7 @@ onready var gun_pivot : Position2D = get_node("GunPivot")
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
 onready var absorbArea : Area2D =  get_node("AbsorbArea") 
 onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
+onready var effects_player : AnimationPlayer = get_node("EffectsPlayer")
 onready var player_sprite : Sprite = get_node("PlayerSprite")
 onready var hand_sprite : Sprite = get_node("GunPivot/Hand")
 
@@ -80,6 +81,7 @@ func move(delta) -> void:
 
 
 func absorb_life():
+	effects_player.play("absorb")
 	overlapping_life_sources = absorbArea.get_overlapping_areas()
 	for life_source in overlapping_life_sources:
 		if life_source.has_method('kill_life_source'): 
