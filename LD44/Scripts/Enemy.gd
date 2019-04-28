@@ -19,6 +19,7 @@ onready var navigation = Global.navigation
 onready var enemy_sprite = get_node("EnemySprite")
 onready var collision_shape = get_node("CollisionShape2D")
 onready var idle_timer = get_node("IdleTimer")
+onready var anim_player = get_node('AnimationPlayer')
 
 
 var current_state = null
@@ -115,10 +116,13 @@ func _make_path():
 	else:
 		destination = possible_destinations[randi() % possible_destinations.size()].global_position
 
-		
 	path = navigation.get_simple_path(global_position, destination, false)
 
 func change_state(new_state):
+	if new_state == states.CHASE:
+		anim_player.play("chase_undead")
+	if new_state == states.ALIVE:
+		anim_player.play("chase_alive")
 	current_state = new_state
 
 
