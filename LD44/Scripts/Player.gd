@@ -1,6 +1,12 @@
 extends KinematicBody2D
 
 signal update_UI_lives_label(absorbed_life)
+signal kill_player
+
+enum states {
+	ALIVE,
+	DEAD
+}
 
 class_name player
 
@@ -19,11 +25,12 @@ export var speed = 200;
 export var absorbed_life : float = 50
 export var lives_per_bullet : float = 1
 
-
+var current_state = null
 var move_direction = Vector2(0,0)
 var overlapping_life_sources = []
 
 func _ready():
+	current_state = states.ALIVE
 	self.connect("update_UI_lives_label", UI, 'update_lives_label')
 	emit_signal("update_UI_lives_label", absorbed_life)
 	player_gun.connect('gun_shot', self, '_on_gun_shot')
@@ -32,11 +39,18 @@ func _ready():
 
 
 func _process(delta) -> void:
-	control_gun(delta)
+	if current_state == states.ALIVE:
+		control_gun(delta)
+	if current_state == states.DEAD:
+		#Play Death animation
+		#Wait till the animation dinishes
+		emit_signal("kill_player")
+		
 
 
 func _physics_process(delta):
-	move(delta)
+	if current_state == states.ALIVE:
+		move(delta)
 
 
 func control_gun(delta) -> void:
@@ -78,7 +92,18 @@ func control_animations(pivot : Position2D):
 
 func move(delta) -> void:
 	move_and_slide(get_input_direction().normalized() * speed)
-
+	for i in range(get_slide_count() - 1):
+		var collision = get_slide_collision(i)
+		var script_name : String = collision.collider.get_script().get_name()
+		if script_name.find("Enemy"):
+			kill()
+		
+func kill():
+	#current_state = states.DEAD
+	#Play death animation
+	#wait till animation finishes
+	#emit_signal('kill_player')
+	pass
 
 func absorb_life():
 	var didAbsorb = false
