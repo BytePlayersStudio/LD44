@@ -17,6 +17,8 @@ export var alive_speed = 20
 onready var available_destinations : Node2D = Global.destinations
 onready var navigation = Global.navigation
 onready var enemy_sprite = get_node("EnemySprite")
+onready var collision_shape = get_node("CollisionShape2D")
+onready var idle_timer = get_node("IdleTimer")
 
 
 var current_state = null
@@ -61,6 +63,7 @@ func chase():
 
 func idle():
 	pass
+	#play idle animation
 
 
 func alive():
@@ -69,7 +72,9 @@ func alive():
 
 func on_hit():
 	enemy_sprite.set_modulate(Color(1,1,1,1))
+	collision_shape.disabled = true
 	speed = alive_speed
+	
 	change_state(states.ALIVE)
 	#queue_free()
 
@@ -97,6 +102,9 @@ func _update_path():
 	if path.size() > 1:
 		path.remove(0)
 	else:
+		if current_state == states.ALIVE:
+			idle_timer.start()
+			change_state(states.IDLE)
 		_make_path()
 
 
@@ -114,5 +122,6 @@ func change_state(new_state):
 	#print(current_state)
 
 
+func _on_IdleTimer_timeout():
 
-
+	change_state(states.ALIVE)

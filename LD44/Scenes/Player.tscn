@@ -30,7 +30,7 @@
 [ext_resource path="res://Assets/Art/Actors/Anton/Run Back/AntonRunBack8.png" type="Texture" id=28]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 33.0773
+radius = 40.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -133,8 +133,6 @@ position = Vector2( 6.47774, 2.05463 )
 texture = ExtResource( 4 )
 
 [node name="AbsorbArea" type="Area2D" parent="."]
-editor/display_folded = true
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbsorbArea"]
 shape = SubResource( 1 )
