@@ -13,6 +13,7 @@ class_name player
 
 onready var UI = Global.UI
 onready var gun_pivot : Position2D = get_node("GunPivot")
+onready var gun_sprite : Sprite = get_node("GunPivot/GunPosition/Gun").get_child(0)
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
 onready var absorbArea : Area2D =  get_node("AbsorbArea") 
 onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
@@ -67,12 +68,13 @@ func control_animations(pivot : Position2D):
 	var current_rotation = fmod(pivot.rotation_degrees, 360)
 	if current_rotation < 0:
 		current_rotation += 360
-	
+	print(current_rotation)
 	if current_rotation <= 270 and current_rotation >= 90:
 		player_sprite.set_flip_h(true)
-		
+		gun_sprite.set_flip_v(true)
 	else:
 		player_sprite.set_flip_h(false)
+		gun_sprite.set_flip_v(false)
 	
 	if current_rotation >= 0 and current_rotation <= 180:
 		hand_sprite.z_index = self.z_index + 1
