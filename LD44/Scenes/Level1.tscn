@@ -72,19 +72,6 @@ position = Vector2( 6.82278, 151.662 )
 position = Vector2( 184.792, 339.691 )
 
 [node name="Enemies" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 7 )]
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( -30.0081, 49.7277 )
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( -34.295, 129.464 )
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 116.603, 66.0178 )
-
-[node name="Enemy5" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 998.94, 243.233 )
 

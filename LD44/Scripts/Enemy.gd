@@ -102,10 +102,11 @@ func _update_path():
 	if path.size() > 1:
 		path.remove(0)
 	else:
+		_make_path()
 		if current_state == states.ALIVE:
 			idle_timer.start()
 			change_state(states.IDLE)
-		_make_path()
+
 
 
 func _make_path():
@@ -119,9 +120,8 @@ func _make_path():
 
 func change_state(new_state):
 	current_state = new_state
-	#print(current_state)
+
 
 
 func _on_IdleTimer_timeout():
-
 	change_state(states.ALIVE)
