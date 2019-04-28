@@ -41,7 +41,7 @@ func _physics_process(delta):
 func control_gun(delta) -> void:
 	gun_pivot.look_at(get_global_mouse_position())
 	control_animations(gun_pivot)
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and absorbed_life > 0:
 		player_gun.shoot()
 	if Input.is_action_just_pressed("absorb_life"):
 		#Maybe use a timer to use the ability
@@ -60,11 +60,15 @@ func control_animations(pivot : Position2D):
 		player_sprite.set_flip_h(false)
 	
 	if current_rotation >= 0 and current_rotation <= 180:
+		hand_sprite.z_index = self.z_index + 1
+		gun_pivot.z_index = self.z_index + 1
 		if get_input_direction():
 			anim_player.play("run")
 		else:
 			anim_player.play("idle")
 	else:
+		hand_sprite.z_index = self.z_index
+		gun_pivot.z_index = self.z_index
 		if get_input_direction():
 			anim_player.play("run_back")
 		else:
@@ -80,12 +84,11 @@ func absorb_life():
 	for life_source in overlapping_life_sources:
 		if life_source.has_method('kill_life_source'): 
 			life_source.kill_life_source()
-	print(overlapping_life_sources)
-	print(absorbed_life)
+#	print(overlapping_life_sources)
+#	print(absorbed_life)
 
 
 func _on_absorbed_life_updated(life_source_life):
-	#TODO: Send absorbed_life to the GUI every time it updates.
 	absorbed_life += life_source_life
 	emit_signal("update_UI_lives_label", absorbed_life)
 
