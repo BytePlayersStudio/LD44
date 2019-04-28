@@ -190,7 +190,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "absorb"
 length = 1.2
 step = 0.03
@@ -243,8 +243,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "try_absorb"
+[sub_resource type="Animation" id=9]
 length = 1.2
 step = 0.03
 tracks/0/type = "value"
@@ -286,7 +285,6 @@ animations = [ {
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
-position = Vector2( 0.109797, 0 )
 script = ExtResource( 1 )
 speed = 100
 
@@ -332,8 +330,8 @@ anims/run_back = SubResource( 6 )
 autoplay = "SETUP"
 playback_speed = 1.5
 anims/SETUP = SubResource( 7 )
-anims/absorb = SubResource( 9 )
-anims/try_absorb = SubResource( 8 )
+anims/absorb = SubResource( 8 )
+anims/try_absorb = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
