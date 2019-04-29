@@ -17,6 +17,7 @@ func close_door():
 	
 
 func open_door():
+	audio_player.play()
 	animated_sprite.frame = 1
 	closed_collision.call_deferred("set_disabled", true)
 	opened_collision_1.call_deferred("set_disabled", false)
@@ -34,5 +35,4 @@ func _on_CloseDoorTrigger_body_entered(body):
 	if body.get_name() == 'Player' && is_opened():
 		close_door()
 func _on_EnemiesInSector_all_enemies_alive():
-	audio_player.play()
 	open_door()
