@@ -19,7 +19,6 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="DestroyTimer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="DestroyTimer" to="." method="_on_DestroyTimer_timeout"]

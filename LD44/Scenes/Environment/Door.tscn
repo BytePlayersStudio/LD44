@@ -52,6 +52,7 @@ shape = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -15.0
 
 [connection signal="body_entered" from="OpenDoorTrigger" to="." method="_on_OpenDoorTrigger_body_entered"]
 [connection signal="body_entered" from="CloseDoorTrigger" to="." method="_on_CloseDoorTrigger_body_entered"]
