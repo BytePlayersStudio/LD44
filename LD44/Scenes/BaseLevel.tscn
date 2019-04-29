@@ -58,7 +58,9 @@ position = Vector2( 88, 40 )
 
 [node name="LifeSources" type="YSort" parent="YSort"]
 
-[node name="Obstacles" type="TileMap" parent="YSort"]
+[node name="YSort" type="YSort" parent="YSort"]
+
+[node name="Obstacles" type="TileMap" parent="YSort/YSort"]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 format = 1
