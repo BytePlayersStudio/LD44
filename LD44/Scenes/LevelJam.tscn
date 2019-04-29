@@ -70,6 +70,9 @@ position = Vector2( 776, 419 )
 [node name="RandDest10" type="Position2D" parent="RandomDestinations" index="9"]
 position = Vector2( 523.8, 185 )
 
+[node name="YSort" parent="." index="7"]
+editor/display_folded = true
+
 [node name="Sector1" type="YSort" parent="YSort" index="0"]
 editor/display_folded = true
 
@@ -200,13 +203,11 @@ position = Vector2( 48, 742 )
 position = Vector2( 520, 663 )
 
 [node name="Sector4" type="YSort" parent="YSort" index="3"]
-editor/display_folded = true
 
 [node name="DoorOpenable" parent="YSort/Sector4" index="0" instance=ExtResource( 10 )]
 position = Vector2( 520.4, 481 )
 
 [node name="EnemiesInSector" parent="YSort/Sector4" index="1" instance=ExtResource( 6 )]
-editor/display_folded = true
 
 [node name="EnemyActivationArea" parent="YSort/Sector4/EnemiesInSector" index="0"]
 editor/display_folded = true

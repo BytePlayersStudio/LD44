@@ -20,6 +20,7 @@ onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
 onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")
 onready var player_sprite : Sprite = get_node("PlayerSprite")
 onready var hand_sprite : Sprite = get_node("GunPivot/Hand")
+onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 
 export var speed = 200;
@@ -109,6 +110,7 @@ func absorb_life():
 		for life_source in overlapping_life_sources:
 			if life_source.has_method('kill_life_source'): 
 				didAbsorb = true
+				audio_player.play()
 				life_source.kill_life_source()
 	
 		if didAbsorb:

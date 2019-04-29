@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/absorb_life.wav-26359fe9a7b8d6ddde564d5dfbf133a9.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/absorb_life.wav"
+dest_files=[ "res://.import/absorb_life.wav-26359fe9a7b8d6ddde564d5dfbf133a9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
