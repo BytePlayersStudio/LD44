@@ -128,10 +128,11 @@ speed = 100
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 0.423529 )
-position = Vector2( 0, 9.16298 )
+position = Vector2( 0, 1.16298 )
 texture = ExtResource( 2 )
 
 [node name="GunPivot" type="Position2D" parent="."]
+position = Vector2( 0, -8 )
 
 [node name="GunPosition" type="Position2D" parent="GunPivot"]
 position = Vector2( 7, 3 )
@@ -143,15 +144,17 @@ position = Vector2( 7, 3 )
 texture = ExtResource( 4 )
 
 [node name="AbsorbArea" type="Area2D" parent="."]
-visible = false
+position = Vector2( 0, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AbsorbArea"]
 shape = SubResource( 1 )
 
 [node name="PlayerSprite" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
 texture = ExtResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -8 )
 current = true
 smoothing_enabled = true
 smoothing_speed = 7.0
@@ -165,9 +168,9 @@ anims/run = SubResource( 5 )
 anims/run_back = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -0.5, 8 )
+position = Vector2( -0.5, 0 )
 shape = SubResource( 7 )
 
 [node name="Effects" parent="." instance=ExtResource( 29 )]
+position = Vector2( 0, -8 )
 
