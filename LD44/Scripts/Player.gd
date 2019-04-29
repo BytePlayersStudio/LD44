@@ -21,6 +21,7 @@ onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")
 onready var player_sprite : Sprite = get_node("PlayerSprite")
 onready var hand_sprite : Sprite = get_node("GunPivot/Hand")
 onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
+onready var collision_shape = get_node("CollisionShape2D")
 
 
 export var speed = 200;
@@ -101,6 +102,7 @@ func move(delta) -> void:
 				kill()
 		
 func kill():
+	collision_shape.disabled = true
 	current_state = states.DEAD
 	audio_player.stream = death_SFX
 	audio_player.play()
