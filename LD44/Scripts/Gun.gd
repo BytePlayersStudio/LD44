@@ -9,6 +9,7 @@ export var cooldown : float = .5
 
 onready var bullet_spawn : Position2D = get_node("BulletSpawn")
 onready var cooldown_timer : Timer= get_node('CooldownTimer')
+onready var audio_player = get_node("AudioStreamPlayer")
 
 var can_shoot : bool = true
 
@@ -24,6 +25,7 @@ func shoot() -> void:
 		cooldown_timer.start()
 		var b = bullet_res.instance()
 		var rot = bullet_spawn.global_rotation
+		audio_player.play()
 		
 		if self.get_scale() != Vector2(1, 1):
 			rot = -rot

@@ -20,11 +20,14 @@ onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
 onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")
 onready var player_sprite : Sprite = get_node("PlayerSprite")
 onready var hand_sprite : Sprite = get_node("GunPivot/Hand")
+onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 
 export var speed = 200;
 export var absorbed_life : float = 50
 export var lives_per_bullet : float = 1
+export var death_SFX : AudioStream
+export var absorb_life_SFX : AudioStream
 
 var current_state = null
 var move_direction = Vector2(0,0)
@@ -99,6 +102,8 @@ func move(delta) -> void:
 		
 func kill():
 	current_state = states.DEAD
+	audio_player.stream = death_SFX
+	audio_player.play()
 	anim_player.play("death")
 	pass
 
@@ -109,6 +114,8 @@ func absorb_life():
 		for life_source in overlapping_life_sources:
 			if life_source.has_method('kill_life_source'): 
 				didAbsorb = true
+				audio_player.stream = absorb_life_SFX
+				audio_player.play()
 				life_source.kill_life_source()
 	
 		if didAbsorb:
