@@ -13,7 +13,7 @@ enum states {
 export var navigation_stop_threshold = 5
 export var speed = 90
 export var alive_speed = 20
-export var detection_radius = 200
+export var detection_radius = 1
 
 
 onready var available_destinations : Node2D = Global.destinations
@@ -128,7 +128,8 @@ func change_state(new_state):
 		anim_player.play("chase_alive")
 	current_state = new_state
 
-
+func _on_enemy_activated():
+	detection_radius = 2000
 
 func _on_IdleTimer_timeout():
 	change_state(states.ALIVE)

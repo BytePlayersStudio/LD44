@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Art/Tiles/TileSheet.tres" type="TileSet" id=3]
 [ext_resource path="res://Scripts/Navigation/Navigation2D.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Destinations/RandomDestinations.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/NPCs/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/EnemiesInSector.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
 
 [node name="BaseLevel" type="Node2D"]
@@ -50,10 +50,10 @@ position = Vector2( 88, 40 )
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Enemies" type="YSort" parent="YSort"]
+[node name="Enemies" parent="YSort" instance=ExtResource( 6 )]
 
-[node name="Enemy" parent="YSort/Enemies" instance=ExtResource( 6 )]
-position = Vector2( 62.07, 0 )
+[node name="Enemy" parent="YSort/Enemies" index="0"]
+position = Vector2( 87.42, 0 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 7 )]
 
@@ -64,3 +64,5 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
+
+[editable path="YSort/Enemies"]
