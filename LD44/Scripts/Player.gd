@@ -42,10 +42,6 @@ func _ready():
 func _process(delta) -> void:
 	if current_state == states.ALIVE:
 		control_gun(delta)
-	if current_state == states.DEAD:
-		#Play Death animation
-		#Wait till the animation dinishes
-		emit_signal("kill_player")
 #	print(Engine.get_frames_per_second())
 
 
@@ -94,7 +90,8 @@ func control_animations(pivot : Position2D):
 
 func move(delta) -> void:
 	move_and_slide(get_input_direction().normalized() * speed)
-	for i in range(get_slide_count() - 1):
+	for i in range(get_slide_count()):
+		print(i)
 		var collision = get_slide_collision(i)
 		if collision.collider.get_script() != null:
 			var script_name : String = collision.collider.get_script().get_name()
@@ -102,10 +99,8 @@ func move(delta) -> void:
 				kill()
 		
 func kill():
-	#current_state = states.DEAD
-	#Play death animation
-	#wait till animation finishes
-	#emit_signal('kill_player')
+	current_state = states.DEAD
+	anim_player.play("death")
 	pass
 
 func absorb_life():
@@ -140,3 +135,8 @@ func get_input_direction() -> Vector2:
 	input_direction.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	input_direction.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	return input_direction
+
+
+func _on_animation_finished(anim_name):
+	if anim_name == "death":
+		emit_signal("kill_player")
