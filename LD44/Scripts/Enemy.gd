@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal send_enemy_alive
+
 class_name enemy
 
 enum states {
@@ -31,18 +33,23 @@ var destination
 var path = []
 var possible_destinations = []
 var motion = Vector2()
+var is_alive = false
 
 
 func _ready():
-
-	print('spawned')
 	for p in get_tree().get_nodes_in_group('player'):
 		player = p
-	destination = player.global_position
+	destination = global_position
 	current_state = states.SPAWN
 	possible_destinations = available_destinations.get_children()
-	_make_path() 
 
+
+func spawn_mob():
+	destination = player.global_position
+	_make_path() 
+	pass
+
+	
 #TODO FIXME: This works for now but we should make it more complex if we want to improve in thne future
 func _physics_process(delta):
 	match current_state:
@@ -58,8 +65,9 @@ func _physics_process(delta):
 
 func spawn():
 	#Play Spawn Animation
-	change_state(states.CHASE)
-	pass
+	if position.distance_to(player.position) < detection_radius:
+		change_state(states.CHASE)
+	
 
 func chase():
 	_navigate()
@@ -71,6 +79,7 @@ func idle():
 
 
 func alive():
+	
 	_navigate()
 
 
@@ -78,7 +87,8 @@ func on_hit():
 	effects_player.play("absorb_particles")
 	collision_shape.disabled = true
 	speed = alive_speed
-	
+	is_alive = true
+	emit_signal("send_enemy_alive")
 	change_state(states.ALIVE)
 	#queue_free()
 
@@ -87,7 +97,7 @@ func _navigate():
 	var distance_to_destination = position.distance_to(path[0])
 	destination = path[0]
 	
-	if distance_to_destination > navigation_stop_threshold && distance_to_destination < detection_radius:
+	if distance_to_destination > navigation_stop_threshold:
 		_move()
 	else:
 		_update_path()
@@ -129,7 +139,8 @@ func change_state(new_state):
 	current_state = new_state
 
 func _on_enemy_activated():
-	detection_radius = 2000
+	spawn_mob()
+	detection_radius = 100
 
 func _on_IdleTimer_timeout():
 	change_state(states.ALIVE)

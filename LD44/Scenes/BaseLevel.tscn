@@ -50,10 +50,7 @@ position = Vector2( 88, 40 )
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Enemies" parent="YSort" instance=ExtResource( 6 )]
-
-[node name="Enemy" parent="YSort/Enemies" index="0"]
-position = Vector2( 87.42, 0 )
+[node name="EnemiesInSector" parent="YSort" instance=ExtResource( 6 )]
 
 [node name="Player" parent="YSort" instance=ExtResource( 7 )]
 
@@ -64,5 +61,3 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
-
-[editable path="YSort/Enemies"]
