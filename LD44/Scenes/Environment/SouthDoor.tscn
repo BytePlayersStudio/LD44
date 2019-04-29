@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Environment/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Door/SouthDoor.gd" type="Script" id=2]
+
+[node name="SouthDoor" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="OpenDoorTrigger" index="0"]
+disabled = false
+
+[node name="CollisionShape2D" parent="CloseDoorTrigger" index="0"]
+disabled = true
+

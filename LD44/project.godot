@@ -12,7 +12,12 @@ _global_script_classes=[ {
 "base": "YSort",
 "class": "Door",
 "language": "GDScript",
-"path": "res://Scripts/Door.gd"
+"path": "res://Scripts/Door/Door.gd"
+}, {
+"base": "",
+"class": "SouthDoor",
+"language": "GDScript",
+"path": "res://Scripts/Door/SouthDoor.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "bullet",
@@ -41,6 +46,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Door": "",
+"SouthDoor": "",
 "bullet": "",
 "enemy": "",
 "gun": "",
