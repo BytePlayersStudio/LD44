@@ -96,7 +96,7 @@ func on_hit():
 
 
 func _navigate():
-	var distance_to_destination
+	var distance_to_destination = 0
 	if path.size() > 0:
 		distance_to_destination = position.distance_to(path[0])
 		destination = path[0]
