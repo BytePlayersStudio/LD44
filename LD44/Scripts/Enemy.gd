@@ -29,10 +29,11 @@ var destination
 var path = []
 var possible_destinations = []
 var motion = Vector2()
-
+export var is_processing = false
 
 
 func _ready():
+
 	print('spawned')
 	for p in get_tree().get_nodes_in_group('player'):
 		player = p
@@ -43,6 +44,10 @@ func _ready():
 
 #TODO FIXME: This works for now but we should make it more complex if we want to improve in thne future
 func _physics_process(delta):
+	if is_processing == false:
+		set_physics_process(false)
+	else:
+		set_physics_process(true)
 	match current_state:
 		states.SPAWN:
 			spawn()

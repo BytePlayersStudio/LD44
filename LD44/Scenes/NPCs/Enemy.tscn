@@ -67,14 +67,15 @@ speed = 80
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.423529 )
-position = Vector2( 0, 7 )
+position = Vector2( 0, 1 )
 texture = ExtResource( 2 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
+position = Vector2( 0, -6 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.11614, 3.04872 )
+position = Vector2( 0.11614, -2.95128 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -86,5 +87,6 @@ anims/chase_undead = SubResource( 4 )
 wait_time = 1.5
 
 [node name="Effects" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -6 )
 
 [connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
