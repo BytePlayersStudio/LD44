@@ -34,6 +34,7 @@ var path = []
 var possible_destinations = []
 var motion = Vector2()
 var is_alive = false
+var first_iteration = true
 
 
 func _ready():
@@ -47,7 +48,7 @@ func _ready():
 func spawn_mob():
 	destination = player.get_global_position()
 	_make_path() 
-	pass
+
 
 	
 #TODO FIXME: This works for now but we should make it more complex if we want to improve in thne future
@@ -95,16 +96,21 @@ func on_hit():
 
 
 func _navigate():
-	var distance_to_destination = position.distance_to(path[0])
-	destination = path[0]
+	var distance_to_destination
+	if path.size() > 0:
+		distance_to_destination = position.distance_to(path[0])
+		destination = path[0]
 	
-	if distance_to_destination > navigation_stop_threshold:
+	if distance_to_destination > navigation_stop_threshold && path.size() > 0:
 		_move()
 	else:
 		_update_path()
 
 
 func _move():
+	if first_iteration:
+		_make_path()
+		first_iteration = false
 	motion = (destination - position).normalized() * speed
 	
 	if is_on_wall():

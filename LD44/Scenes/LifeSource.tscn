@@ -59,6 +59,7 @@ tracks/0/keys = {
 ]]
 collision_layer = 9
 script = ExtResource( 1 )
+life_source_life = 1.0
 
 [node name="LifeSourceSprite" type="Sprite" parent="."]
 position = Vector2( 0, -7 )
