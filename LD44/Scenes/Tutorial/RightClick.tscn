@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Art/Tutorial/RightClick.png" type="Texture" id=1]
+
+[node name="RightClick" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+texture = ExtResource( 1 )
+
