@@ -121,8 +121,8 @@ func _move():
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
 		if collision.collider.get_script() != null:
-			var script_name : String = collision.collider.get_script().get_name()
-			if script_name.find("Player"):
+			#var script_name : String = collision.collider.get_script().get_name()
+			if collision.collider.has_method("kill"):
 				collision.collider.kill()
 
 
