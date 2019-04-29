@@ -118,6 +118,12 @@ func _move():
 		_make_path()
 
 	move_and_slide(motion)
+	for i in range(get_slide_count()):
+		var collision = get_slide_collision(i)
+		if collision.collider.get_script() != null:
+			var script_name : String = collision.collider.get_script().get_name()
+			if script_name.find("Player"):
+				collision.collider.kill()
 
 
 
