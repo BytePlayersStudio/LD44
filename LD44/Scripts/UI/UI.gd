@@ -1,6 +1,6 @@
 extends Control
 
-onready var lives_label : Label = get_node("MarginContainer/LivesLabel")
+onready var lives_label : Label = get_node("MarginContainer/HBoxContainer/LivesLabel")
 
 func _ready():
 	print(self)
