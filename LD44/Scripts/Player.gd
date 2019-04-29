@@ -91,7 +91,6 @@ func control_animations(pivot : Position2D):
 func move(delta) -> void:
 	move_and_slide(get_input_direction().normalized() * speed)
 	for i in range(get_slide_count()):
-		print(i)
 		var collision = get_slide_collision(i)
 		if collision.collider.get_script() != null:
 			var script_name : String = collision.collider.get_script().get_name()
