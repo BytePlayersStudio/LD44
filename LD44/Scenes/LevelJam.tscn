@@ -1,17 +1,15 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/BaseLevel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/NPCs/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Environment/SouthDoor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EnemiesInSector.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/LifeSource.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/NPCs/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/LifeSource.tscn" type="PackedScene" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 136, -88, 136, 88, 24, 88, -24, 8, -24, -40, -120, -88, -72, -40, -120, 88, -72, 8, -8, 88, 24, 184, 104, 424, 104, 392, 168, 392, 168, 424, -8, 184, 120, 184, 120, 264, 56, 264, 56, 344, 216, 344, 216, 392, 24, 392, -56, 344, -56, 264, 24, 424, 40, 424, 40, 456, 56, 584, -56, 584, -88, 568, -40, 456, -24, 424, 88, 568, -24, 392, -104, 424, -88, 424, -88, 456, -40, 424, 136, 552, 88, 456, 88, 424, 184, 536, 184, 552, 216, 424, 216, 536, 136, 568, 88, 584, 56, 632, -56, 632, -88, 584, -136, 568, -136, 552, -184, 552, -184, 536, -152, 424, -216, 536, -216, 424, -152, 392, -216, 392, -216, 344, -120, 264, -120, 184, -104, 392 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 0, 4, 6 ), PoolIntArray( 7, 5, 6, 8 ), PoolIntArray( 9, 7, 8, 3 ), PoolIntArray( 9, 3, 2, 10 ), PoolIntArray( 11, 12, 13, 14 ), PoolIntArray( 15, 9, 10 ), PoolIntArray( 10, 16, 17, 18 ), PoolIntArray( 19, 20, 21, 13 ), PoolIntArray( 19, 13, 12 ), PoolIntArray( 19, 12, 22, 23, 24 ), PoolIntArray( 25, 26, 27 ), PoolIntArray( 28, 29, 30, 31, 32, 25, 27, 33 ), PoolIntArray( 22, 25, 32, 34 ), PoolIntArray( 35, 36, 37 ), PoolIntArray( 31, 38, 32 ), PoolIntArray( 39, 40, 41, 11, 42, 43 ), PoolIntArray( 14, 44, 45, 42 ), PoolIntArray( 40, 39, 46, 33, 27 ), PoolIntArray( 33, 47, 28 ), PoolIntArray( 28, 48, 49, 29 ), PoolIntArray( 29, 50, 30 ), PoolIntArray( 30, 51, 52, 37, 31 ), PoolIntArray( 37, 52, 53, 54, 55, 35 ), PoolIntArray( 54, 56, 57, 55 ), PoolIntArray( 58, 59, 60, 23 ), PoolIntArray( 24, 61, 62, 15 ), PoolIntArray( 11, 14, 42 ), PoolIntArray( 63, 35, 55, 58 ), PoolIntArray( 63, 58, 23 ), PoolIntArray( 34, 63, 23 ), PoolIntArray( 24, 15, 10, 18, 19 ), PoolIntArray( 23, 22, 34 ) ]
 outlines = [ PoolVector2Array( -120, -88, -120, 88, -8, 88, -8, 184, -120, 184, -120, 264, -56, 264, -56, 344, -216, 344, -216, 392, -152, 392, -152, 424, -216, 424, -216, 536, -184, 536, -184, 552, -136, 552, -136, 568, -88, 568, -88, 584, -56, 584, -56, 632, 56, 632, 56, 584, 88, 584, 88, 568, 136, 568, 136, 552, 184, 552, 184, 536, 216, 536, 216, 424, 168, 424, 168, 392, 216, 392, 216, 344, 56, 344, 56, 264, 120, 264, 120, 184, 24, 184, 24, 88, 136, 88, 136, -88 ), PoolVector2Array( -104, 392, -104, 424, -88, 424, -88, 456, -40, 456, -40, 424, -24, 424, -24, 392 ), PoolVector2Array( 24, 392, 24, 424, 40, 424, 40, 456, 88, 456, 88, 424, 104, 424, 104, 392 ), PoolVector2Array( -72, -40, -72, 8, -24, 8, -24, -40 ) ]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 24, 10 )
 
 [node name="LevelJam" index="0" instance=ExtResource( 1 )]
 
@@ -27,186 +25,191 @@ navpoly = SubResource( 1 )
 [node name="RandomDestinations" parent="." index="5"]
 editor/display_folded = true
 
-[node name="EnemiesInSector" parent="YSort" index="0"]
+[node name="Sector1" type="YSort" parent="YSort" index="0"]
+
+[node name="SouthDoor" parent="YSort/Sector1" index="0" instance=ExtResource( 2 )]
+position = Vector2( 8, 96 )
+
+[node name="EnemiesInSector" parent="YSort/Sector1" index="1" instance=ExtResource( 3 )]
 editor/display_folded = true
 
-[node name="EnemyActivationArea" parent="YSort/EnemiesInSector" index="0"]
-editor/display_folded = true
-position = Vector2( 35.6, 0 )
+[node name="Enemy" parent="YSort/Sector1/EnemiesInSector" index="1" instance=ExtResource( 4 )]
+position = Vector2( 32, 48 )
+speed = 0
 
-[node name="Enemy" parent="YSort/EnemiesInSector" index="1" instance=ExtResource( 2 )]
-position = Vector2( 71.41, 0 )
+[node name="Sector2" type="YSort" parent="YSort" index="1"]
 
-[node name="EnemiesInSector2" parent="YSort" index="1" instance=ExtResource( 3 )]
-editor/display_folded = true
+[node name="SouthDoor" parent="YSort/Sector2" index="0" instance=ExtResource( 2 )]
+position = Vector2( 0, 664 )
 
-[node name="CollisionShape2D" parent="YSort/EnemiesInSector2/EnemyActivationArea" index="0"]
-position = Vector2( 0, 180.2 )
-shape = SubResource( 2 )
+[node name="EnemiesInSector" parent="YSort/Sector2" index="1" instance=ExtResource( 3 )]
 
-[node name="Enemy2" parent="YSort/EnemiesInSector2" index="1" instance=ExtResource( 2 )]
-position = Vector2( -64, 216 )
+[node name="EnemyActivationArea" parent="YSort/Sector2/EnemiesInSector" index="0"]
+position = Vector2( 8, 192 )
 
-[node name="Enemy3" parent="YSort/EnemiesInSector2" index="2" instance=ExtResource( 2 )]
+[node name="Enemy2" parent="YSort/Sector2/EnemiesInSector" index="1" instance=ExtResource( 4 )]
+position = Vector2( -78, 357 )
+
+[node name="Enemy3" parent="YSort/Sector2/EnemiesInSector" index="2" instance=ExtResource( 4 )]
 position = Vector2( 47.42, 288 )
 
-[node name="Enemy4" parent="YSort/EnemiesInSector2" index="3" instance=ExtResource( 2 )]
+[node name="Enemy4" parent="YSort/Sector2/EnemiesInSector" index="3" instance=ExtResource( 4 )]
 position = Vector2( 193.294, 370 )
 
-[node name="Enemy5" parent="YSort/EnemiesInSector2" index="4" instance=ExtResource( 2 )]
+[node name="Enemy5" parent="YSort/Sector2/EnemiesInSector" index="4" instance=ExtResource( 4 )]
 position = Vector2( 136, 474 )
 
-[node name="Enemy6" parent="YSort/EnemiesInSector2" index="5" instance=ExtResource( 2 )]
+[node name="Enemy6" parent="YSort/Sector2/EnemiesInSector" index="5" instance=ExtResource( 4 )]
 position = Vector2( -58, 507 )
 
-[node name="Enemy7" parent="YSort/EnemiesInSector2" index="6" instance=ExtResource( 2 )]
+[node name="Enemy7" parent="YSort/Sector2/EnemiesInSector" index="6" instance=ExtResource( 4 )]
 position = Vector2( -136, 461 )
 
-[node name="Enemy8" parent="YSort/EnemiesInSector2" index="7" instance=ExtResource( 2 )]
+[node name="Enemy8" parent="YSort/Sector2/EnemiesInSector" index="7" instance=ExtResource( 4 )]
 position = Vector2( 152, 520 )
 
-[node name="Enemy9" parent="YSort/EnemiesInSector2" index="8" instance=ExtResource( 2 )]
+[node name="Enemy9" parent="YSort/Sector2/EnemiesInSector" index="8" instance=ExtResource( 4 )]
 position = Vector2( 177.294, 482 )
 
-[node name="Enemy10" parent="YSort/EnemiesInSector2" index="9" instance=ExtResource( 2 )]
+[node name="Enemy10" parent="YSort/Sector2/EnemiesInSector" index="9" instance=ExtResource( 4 )]
 position = Vector2( 103.42, 528 )
 
-[node name="Enemy11" parent="YSort/EnemiesInSector2" index="10" instance=ExtResource( 2 )]
+[node name="Enemy11" parent="YSort/Sector2/EnemiesInSector" index="10" instance=ExtResource( 4 )]
 position = Vector2( -72, 562 )
 
-[node name="Enemy12" parent="YSort/EnemiesInSector2" index="11" instance=ExtResource( 2 )]
+[node name="Enemy12" parent="YSort/Sector2/EnemiesInSector" index="11" instance=ExtResource( 4 )]
 position = Vector2( -6, 584 )
 
-[node name="Enemy13" parent="YSort/EnemiesInSector2" index="12" instance=ExtResource( 2 )]
+[node name="Enemy13" parent="YSort/Sector2/EnemiesInSector" index="12" instance=ExtResource( 4 )]
 position = Vector2( -152, 522 )
 
-[node name="Enemy14" parent="YSort/EnemiesInSector2" index="13" instance=ExtResource( 2 )]
+[node name="Enemy14" parent="YSort/Sector2/EnemiesInSector" index="13" instance=ExtResource( 4 )]
 position = Vector2( -192, 483 )
 
-[node name="Enemy15" parent="YSort/EnemiesInSector2" index="14" instance=ExtResource( 2 )]
+[node name="Enemy15" parent="YSort/Sector2/EnemiesInSector" index="14" instance=ExtResource( 4 )]
 position = Vector2( 13, 479.049 )
 
-[node name="LifeSources" parent="YSort" index="3"]
+[node name="LifeSources" parent="YSort" index="4"]
 editor/display_folded = true
 
-[node name="LifeSource" parent="YSort/LifeSources" index="0" instance=ExtResource( 4 )]
+[node name="LifeSource" parent="YSort/LifeSources" index="0" instance=ExtResource( 5 )]
 position = Vector2( -32, -64 )
 
-[node name="LifeSource2" parent="YSort/LifeSources" index="1" instance=ExtResource( 4 )]
+[node name="LifeSource2" parent="YSort/LifeSources" index="1" instance=ExtResource( 5 )]
 position = Vector2( -64, -64 )
 
-[node name="LifeSource3" parent="YSort/LifeSources" index="2" instance=ExtResource( 4 )]
+[node name="LifeSource3" parent="YSort/LifeSources" index="2" instance=ExtResource( 5 )]
 position = Vector2( -96, -32 )
 
-[node name="LifeSource4" parent="YSort/LifeSources" index="3" instance=ExtResource( 4 )]
+[node name="LifeSource4" parent="YSort/LifeSources" index="3" instance=ExtResource( 5 )]
 position = Vector2( -104, 200 )
 
-[node name="LifeSource5" parent="YSort/LifeSources" index="4" instance=ExtResource( 4 )]
+[node name="LifeSource5" parent="YSort/LifeSources" index="4" instance=ExtResource( 5 )]
 position = Vector2( -88, 208 )
 
-[node name="LifeSource6" parent="YSort/LifeSources" index="5" instance=ExtResource( 4 )]
+[node name="LifeSource6" parent="YSort/LifeSources" index="5" instance=ExtResource( 5 )]
 position = Vector2( -104, 209 )
 
-[node name="LifeSource7" parent="YSort/LifeSources" index="6" instance=ExtResource( 4 )]
+[node name="LifeSource7" parent="YSort/LifeSources" index="6" instance=ExtResource( 5 )]
 position = Vector2( -104, 224 )
 
-[node name="LifeSource8" parent="YSort/LifeSources" index="7" instance=ExtResource( 4 )]
+[node name="LifeSource8" parent="YSort/LifeSources" index="7" instance=ExtResource( 5 )]
 position = Vector2( 104, 224 )
 
-[node name="LifeSource9" parent="YSort/LifeSources" index="8" instance=ExtResource( 4 )]
+[node name="LifeSource9" parent="YSort/LifeSources" index="8" instance=ExtResource( 5 )]
 position = Vector2( 96, 216 )
 
-[node name="LifeSource10" parent="YSort/LifeSources" index="9" instance=ExtResource( 4 )]
+[node name="LifeSource10" parent="YSort/LifeSources" index="9" instance=ExtResource( 5 )]
 position = Vector2( 112, 240 )
 
-[node name="LifeSource11" parent="YSort/LifeSources" index="10" instance=ExtResource( 4 )]
+[node name="LifeSource11" parent="YSort/LifeSources" index="10" instance=ExtResource( 5 )]
 position = Vector2( 88, 233 )
 
-[node name="LifeSource12" parent="YSort/LifeSources" index="11" instance=ExtResource( 4 )]
+[node name="LifeSource12" parent="YSort/LifeSources" index="11" instance=ExtResource( 5 )]
 position = Vector2( -16, 233 )
 
-[node name="LifeSource13" parent="YSort/LifeSources" index="12" instance=ExtResource( 4 )]
+[node name="LifeSource13" parent="YSort/LifeSources" index="12" instance=ExtResource( 5 )]
 position = Vector2( 144, 360 )
 
-[node name="LifeSource14" parent="YSort/LifeSources" index="13" instance=ExtResource( 4 )]
+[node name="LifeSource14" parent="YSort/LifeSources" index="13" instance=ExtResource( 5 )]
 position = Vector2( 160, 345 )
 
-[node name="LifeSource15" parent="YSort/LifeSources" index="14" instance=ExtResource( 4 )]
+[node name="LifeSource15" parent="YSort/LifeSources" index="14" instance=ExtResource( 5 )]
 position = Vector2( 176, 361 )
 
-[node name="LifeSource16" parent="YSort/LifeSources" index="15" instance=ExtResource( 4 )]
+[node name="LifeSource16" parent="YSort/LifeSources" index="15" instance=ExtResource( 5 )]
 position = Vector2( 160, 368 )
 
-[node name="LifeSource17" parent="YSort/LifeSources" index="16" instance=ExtResource( 4 )]
+[node name="LifeSource17" parent="YSort/LifeSources" index="16" instance=ExtResource( 5 )]
 position = Vector2( -200, 353 )
 
-[node name="LifeSource18" parent="YSort/LifeSources" index="17" instance=ExtResource( 4 )]
+[node name="LifeSource18" parent="YSort/LifeSources" index="17" instance=ExtResource( 5 )]
 position = Vector2( -208, 368 )
 
-[node name="LifeSource19" parent="YSort/LifeSources" index="18" instance=ExtResource( 4 )]
+[node name="LifeSource19" parent="YSort/LifeSources" index="18" instance=ExtResource( 5 )]
 position = Vector2( -168, 384 )
 
-[node name="LifeSource20" parent="YSort/LifeSources" index="19" instance=ExtResource( 4 )]
+[node name="LifeSource20" parent="YSort/LifeSources" index="19" instance=ExtResource( 5 )]
 position = Vector2( -192, 472 )
 
-[node name="LifeSource21" parent="YSort/LifeSources" index="20" instance=ExtResource( 4 )]
+[node name="LifeSource21" parent="YSort/LifeSources" index="20" instance=ExtResource( 5 )]
 position = Vector2( -160, 456 )
 
-[node name="LifeSource22" parent="YSort/LifeSources" index="21" instance=ExtResource( 4 )]
+[node name="LifeSource22" parent="YSort/LifeSources" index="21" instance=ExtResource( 5 )]
 position = Vector2( -144, 480 )
 
-[node name="LifeSource23" parent="YSort/LifeSources" index="22" instance=ExtResource( 4 )]
+[node name="LifeSource23" parent="YSort/LifeSources" index="22" instance=ExtResource( 5 )]
 position = Vector2( -160, 488 )
 
-[node name="LifeSource24" parent="YSort/LifeSources" index="23" instance=ExtResource( 4 )]
+[node name="LifeSource24" parent="YSort/LifeSources" index="23" instance=ExtResource( 5 )]
 position = Vector2( -32, 481 )
 
-[node name="LifeSource25" parent="YSort/LifeSources" index="24" instance=ExtResource( 4 )]
+[node name="LifeSource25" parent="YSort/LifeSources" index="24" instance=ExtResource( 5 )]
 position = Vector2( -8.5, 408 )
 
-[node name="LifeSource26" parent="YSort/LifeSources" index="25" instance=ExtResource( 4 )]
+[node name="LifeSource26" parent="YSort/LifeSources" index="25" instance=ExtResource( 5 )]
 position = Vector2( 5, 408 )
 
-[node name="LifeSource27" parent="YSort/LifeSources" index="26" instance=ExtResource( 4 )]
+[node name="LifeSource27" parent="YSort/LifeSources" index="26" instance=ExtResource( 5 )]
 position = Vector2( 144, 424 )
 
-[node name="LifeSource28" parent="YSort/LifeSources" index="27" instance=ExtResource( 4 )]
+[node name="LifeSource28" parent="YSort/LifeSources" index="27" instance=ExtResource( 5 )]
 position = Vector2( 104, 457 )
 
-[node name="LifeSource29" parent="YSort/LifeSources" index="28" instance=ExtResource( 4 )]
+[node name="LifeSource29" parent="YSort/LifeSources" index="28" instance=ExtResource( 5 )]
 position = Vector2( 152, 465 )
 
-[node name="LifeSource30" parent="YSort/LifeSources" index="29" instance=ExtResource( 4 )]
+[node name="LifeSource30" parent="YSort/LifeSources" index="29" instance=ExtResource( 5 )]
 position = Vector2( 185.294, 504 )
 
-[node name="LifeSource31" parent="YSort/LifeSources" index="30" instance=ExtResource( 4 )]
+[node name="LifeSource31" parent="YSort/LifeSources" index="30" instance=ExtResource( 5 )]
 position = Vector2( 136, 528 )
 
-[node name="LifeSource32" parent="YSort/LifeSources" index="31" instance=ExtResource( 4 )]
+[node name="LifeSource32" parent="YSort/LifeSources" index="31" instance=ExtResource( 5 )]
 position = Vector2( 95.42, 512 )
 
-[node name="LifeSource33" parent="YSort/LifeSources" index="32" instance=ExtResource( 4 )]
+[node name="LifeSource33" parent="YSort/LifeSources" index="32" instance=ExtResource( 5 )]
 position = Vector2( 72, 536 )
 
-[node name="LifeSource34" parent="YSort/LifeSources" index="33" instance=ExtResource( 4 )]
+[node name="LifeSource34" parent="YSort/LifeSources" index="33" instance=ExtResource( 5 )]
 position = Vector2( -112, 544 )
 
-[node name="LifeSource35" parent="YSort/LifeSources" index="34" instance=ExtResource( 4 )]
+[node name="LifeSource35" parent="YSort/LifeSources" index="34" instance=ExtResource( 5 )]
 position = Vector2( -32, 560 )
 
-[node name="LifeSource36" parent="YSort/LifeSources" index="35" instance=ExtResource( 4 )]
+[node name="LifeSource36" parent="YSort/LifeSources" index="35" instance=ExtResource( 5 )]
 position = Vector2( 6, 521 )
 
-[node name="LifeSource37" parent="YSort/LifeSources" index="36" instance=ExtResource( 4 )]
+[node name="LifeSource37" parent="YSort/LifeSources" index="36" instance=ExtResource( 5 )]
 position = Vector2( -80, 506 )
 
-[node name="LifeSource38" parent="YSort/LifeSources" index="37" instance=ExtResource( 4 )]
+[node name="LifeSource38" parent="YSort/LifeSources" index="37" instance=ExtResource( 5 )]
 position = Vector2( -80, 377 )
 
-[node name="LifeSource39" parent="YSort/LifeSources" index="38" instance=ExtResource( 4 )]
+[node name="LifeSource39" parent="YSort/LifeSources" index="38" instance=ExtResource( 5 )]
 position = Vector2( 103.42, 361 )
 
+[connection signal="all_enemies_alive" from="YSort/Sector1/EnemiesInSector" to="YSort/Sector1/SouthDoor" method="_on_EnemiesInSector_all_enemies_alive"]
+[connection signal="all_enemies_alive" from="YSort/Sector2/EnemiesInSector" to="YSort/Sector2/SouthDoor" method="_on_EnemiesInSector_all_enemies_alive"]
 
-[editable path="YSort/EnemiesInSector"]
-
-[editable path="YSort/EnemiesInSector2"]
+[editable path="YSort/Sector2/EnemiesInSector"]

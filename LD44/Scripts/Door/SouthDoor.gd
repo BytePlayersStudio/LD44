@@ -9,3 +9,6 @@ func _on_OpenDoorTrigger_body_entered(body):
 func _on_CloseDoorTrigger_body_entered(body):
 	if body.get_name() == 'Player' && !is_opened():
 		open_door()
+
+
+

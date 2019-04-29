@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/EnemyActivationArea.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 88 )
+extents = Vector2( 24, 24 )
 
 [node name="EnemiesInSector" type="YSort"]
 script = ExtResource( 1 )

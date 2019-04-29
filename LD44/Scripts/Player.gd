@@ -46,7 +46,7 @@ func _process(delta) -> void:
 		#Play Death animation
 		#Wait till the animation dinishes
 		emit_signal("kill_player")
-		
+#	print(Engine.get_frames_per_second())
 
 
 func _physics_process(delta):

@@ -45,7 +45,7 @@ func _ready():
 
 
 func spawn_mob():
-	destination = player.global_position
+	destination = player.get_global_position()
 	_make_path() 
 	pass
 
@@ -61,6 +61,7 @@ func _physics_process(delta):
 			chase()
 		states.ALIVE:
 			alive()
+
 	
 
 func spawn():
@@ -112,6 +113,7 @@ func _move():
 	move_and_slide(motion)
 
 
+
 func _update_path():
 	if path.size() > 1:
 		path.remove(0)
@@ -140,7 +142,7 @@ func change_state(new_state):
 
 func _on_enemy_activated():
 	spawn_mob()
-	detection_radius = 100
+	detection_radius = 150
 
 func _on_IdleTimer_timeout():
 	change_state(states.ALIVE)

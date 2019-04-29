@@ -32,3 +32,5 @@ func _on_OpenDoorTrigger_body_entered(body):
 func _on_CloseDoorTrigger_body_entered(body):
 	if body.get_name() == 'Player' && is_opened():
 		close_door()
+func _on_EnemiesInSector_all_enemies_alive():
+	open_door()
