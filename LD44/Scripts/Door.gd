@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends YSort
 
 class_name Door
 func close_door():
