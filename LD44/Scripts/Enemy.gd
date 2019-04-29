@@ -25,7 +25,7 @@ onready var collision_shape = get_node("CollisionShape2D")
 onready var idle_timer = get_node("IdleTimer")
 onready var anim_player = get_node('AnimationPlayer')
 onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")
-
+onready var audio_player = get_node("AudioStreamPlayer")
 
 var current_state = null
 var player : player
@@ -86,6 +86,7 @@ func alive():
 
 
 func on_hit():
+	audio_player.play()
 	effects_player.play("absorb_particles")
 	collision_shape.disabled = true
 	speed = alive_speed
