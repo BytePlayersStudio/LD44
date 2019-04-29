@@ -13,6 +13,8 @@ enum states {
 export var navigation_stop_threshold = 5
 export var speed = 90
 export var alive_speed = 20
+export var detection_radius = 200
+
 
 onready var available_destinations : Node2D = Global.destinations
 onready var navigation = Global.navigation
@@ -29,7 +31,6 @@ var destination
 var path = []
 var possible_destinations = []
 var motion = Vector2()
-export var is_processing = false
 
 
 func _ready():
@@ -44,10 +45,6 @@ func _ready():
 
 #TODO FIXME: This works for now but we should make it more complex if we want to improve in thne future
 func _physics_process(delta):
-	if is_processing == false:
-		set_physics_process(false)
-	else:
-		set_physics_process(true)
 	match current_state:
 		states.SPAWN:
 			spawn()
@@ -90,7 +87,7 @@ func _navigate():
 	var distance_to_destination = position.distance_to(path[0])
 	destination = path[0]
 	
-	if distance_to_destination > navigation_stop_threshold:
+	if distance_to_destination > navigation_stop_threshold && distance_to_destination < detection_radius:
 		_move()
 	else:
 		_update_path()

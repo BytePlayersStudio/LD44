@@ -10,10 +10,10 @@ func _ready():
 
 
 func _on_EnemySpawner_body_entered(body):
-	if body.get_name() == 'Player':
-		print(body.get_name())
-	if get_parent().has_method('close_door'):
-		get_parent().close_door()
+#	if body.get_name() == 'Player':
+#		print(body.get_name())
+#	if get_parent().has_method('close_door'):
+#		get_parent().close_door()
 	spawn()
 	
 func spawn():

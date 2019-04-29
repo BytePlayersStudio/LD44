@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/BaseLevel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/LifeSource.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Environment/Door.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Environment/SpawnerDoor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Spawners/EnemySpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/LifeSource.tscn" type="PackedScene" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 136, 88, -120, 88, -24, 8, 136, -88, -72, 8, -120, -88, -72, -40, -24, -40 )
@@ -21,21 +20,18 @@ tile_data = PoolIntArray( -327688, 0, 2, -327687, 0, 3, -327686, 0, 3, -327685, 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D" index="0"]
 navpoly = SubResource( 1 )
 
-[node name="LifeSources" parent="YSort" index="2"]
+[node name="EnemySpawner" parent="YSort" index="0" instance=ExtResource( 2 )]
+position = Vector2( 0, 50.16 )
+
+[node name="LifeSources" parent="YSort" index="3"]
 editor/display_folded = true
 
-[node name="LifeSource" parent="YSort/LifeSources" index="0" instance=ExtResource( 2 )]
+[node name="LifeSource" parent="YSort/LifeSources" index="0" instance=ExtResource( 3 )]
 position = Vector2( -32, -64 )
 
-[node name="LifeSource2" parent="YSort/LifeSources" index="1" instance=ExtResource( 2 )]
+[node name="LifeSource2" parent="YSort/LifeSources" index="1" instance=ExtResource( 3 )]
 position = Vector2( -64, -64 )
 
-[node name="LifeSource3" parent="YSort/LifeSources" index="2" instance=ExtResource( 2 )]
+[node name="LifeSource3" parent="YSort/LifeSources" index="2" instance=ExtResource( 3 )]
 position = Vector2( -96, -32 )
-
-[node name="Door" parent="YSort" index="4" instance=ExtResource( 3 )]
-position = Vector2( 56.07, -40 )
-
-[node name="SpawnerDoor" parent="YSort" index="5" instance=ExtResource( 4 )]
-position = Vector2( -80, 24 )
 
