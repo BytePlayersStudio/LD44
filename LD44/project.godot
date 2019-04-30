@@ -63,6 +63,7 @@ config/icon="res://Assets/Art/Actors/Anton/Idle/AntonIdle2.png"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+Music_Node="*res://Scenes/Music_Node.tscn"
 
 [display]
 
