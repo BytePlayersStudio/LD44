@@ -1,10 +1,11 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/SFX/door_opened.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/SFX/MainTheme.wav" type="AudioStream" id=1]
 
 [node name="Music_Node" type="Node2D"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+volume_db = -15.0
 autoplay = true
 
