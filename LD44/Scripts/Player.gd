@@ -25,7 +25,7 @@ onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
 onready var collision_shape = get_node("CollisionShape2D")
 
 
-export var speed = 200;
+export var speed = 200
 export var absorbed_life : float = 50
 export var lives_per_bullet : float = 1
 export var death_SFX : AudioStream
@@ -34,6 +34,8 @@ export var absorb_life_SFX : AudioStream
 var current_state = null
 var move_direction = Vector2(0,0)
 var overlapping_life_sources = []
+var camera_threshold = 40
+var viewport_center_position = Vector2(128, 72)
 
 func _ready():
 	current_state = states.ALIVE
@@ -95,26 +97,30 @@ func control_animations(pivot : Position2D):
 
 func move(delta) -> void:
 	var input_direction = get_input_direction()
+	var mouse_position = get_viewport().get_mouse_position()
+	print(camera.position)
 	
-	if input_direction[0] == -1:
+	if mouse_position[0] < viewport_center_position[0] - camera_threshold:
 		camera.drag_margin_left = -0.2
 		camera.drag_margin_right = 0.3
-	elif input_direction[0] == 1:
+	elif mouse_position[0] > viewport_center_position[0] + camera_threshold:
 		camera.drag_margin_left = 0.3
 		camera.drag_margin_right = -0.2
 	else:
-		camera.drag_margin_left = 0.1
-		camera.drag_margin_right = 0.1
+		camera.drag_margin_left = 0
+		camera.drag_margin_right = 0
+		camera.force_update_scroll()
 	
-	if input_direction[1] == -1:
+	if mouse_position[1] < viewport_center_position[1] - 20:
 		camera.drag_margin_top = -0.4
 		camera.drag_margin_bottom = 0.5
-	elif input_direction[1] == 1:
+	elif mouse_position[1] > viewport_center_position[1] + 20:
 		camera.drag_margin_top = 0.5
 		camera.drag_margin_bottom = -0.4
 	else:
-		camera.drag_margin_top = 0.1
-		camera.drag_margin_bottom = 0.1
+		camera.drag_margin_top = 0
+		camera.drag_margin_bottom = 0
+		camera.force_update_scroll()
 
 	#camera.position = get_input_direction()*50
 	move_and_slide(input_direction.normalized() * speed)
