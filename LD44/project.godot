@@ -56,7 +56,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LudumDare44"
+config/name="I'm a Revivor"
 run/main_scene="res://Scenes/LevelJam.tscn"
 config/icon="res://Assets/Art/Actors/Anton/Idle/AntonIdle2.png"
 

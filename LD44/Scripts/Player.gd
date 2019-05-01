@@ -12,6 +12,7 @@ class_name player
 
 
 onready var UI = Global.UI
+onready var camera : Camera2D = get_node("Camera2D")
 onready var gun_pivot : Position2D = get_node("GunPivot")
 onready var gun_sprite : Sprite = get_node("GunPivot/GunPosition/Gun").get_child(0)
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
@@ -93,7 +94,30 @@ func control_animations(pivot : Position2D):
 
 
 func move(delta) -> void:
-	move_and_slide(get_input_direction().normalized() * speed)
+	var input_direction = get_input_direction()
+	
+	if input_direction[0] == -1:
+		camera.drag_margin_left = -0.2
+		camera.drag_margin_right = 0.3
+	elif input_direction[0] == 1:
+		camera.drag_margin_left = 0.3
+		camera.drag_margin_right = -0.2
+	else:
+		camera.drag_margin_left = 0.1
+		camera.drag_margin_right = 0.1
+	
+	if input_direction[1] == -1:
+		camera.drag_margin_top = -0.4
+		camera.drag_margin_bottom = 0.5
+	elif input_direction[1] == 1:
+		camera.drag_margin_top = 0.5
+		camera.drag_margin_bottom = -0.4
+	else:
+		camera.drag_margin_top = 0.1
+		camera.drag_margin_bottom = 0.1
+
+	#camera.position = get_input_direction()*50
+	move_and_slide(input_direction.normalized() * speed)
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
 		if collision.collider.get_script() != null:
