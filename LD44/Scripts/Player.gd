@@ -13,6 +13,7 @@ class_name player
 
 onready var UI = Global.UI
 onready var camera : Camera2D = get_node("Camera2D")
+onready var camera_tween : Tween = get_node("Tween")
 onready var gun_pivot : Position2D = get_node("GunPivot")
 onready var gun_sprite : Sprite = get_node("GunPivot/GunPosition/Gun").get_child(0)
 onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
@@ -49,7 +50,6 @@ func _ready():
 func _process(delta) -> void:
 	if current_state == states.ALIVE:
 		control_gun(delta)
-#	print(Engine.get_frames_per_second())
 
 
 func _physics_process(delta):
@@ -71,7 +71,7 @@ func control_animations(pivot : Position2D):
 	var current_rotation = fmod(pivot.rotation_degrees, 360)
 	if current_rotation < 0:
 		current_rotation += 360
-	#print(current_rotation)
+	
 	if current_rotation <= 270 and current_rotation >= 90:
 		player_sprite.set_flip_h(true)
 		player_gun.set_scale(Vector2(1, -1))
@@ -97,32 +97,9 @@ func control_animations(pivot : Position2D):
 
 func move(delta) -> void:
 	var input_direction = get_input_direction()
-	var mouse_position = get_viewport().get_mouse_position()
-	print(camera.position)
-	
-	if mouse_position[0] < viewport_center_position[0] - camera_threshold:
-		camera.drag_margin_left = -0.2
-		camera.drag_margin_right = 0.3
-	elif mouse_position[0] > viewport_center_position[0] + camera_threshold:
-		camera.drag_margin_left = 0.3
-		camera.drag_margin_right = -0.2
-	else:
-		camera.drag_margin_left = 0
-		camera.drag_margin_right = 0
-		camera.force_update_scroll()
-	
-	if mouse_position[1] < viewport_center_position[1] - 20:
-		camera.drag_margin_top = -0.4
-		camera.drag_margin_bottom = 0.5
-	elif mouse_position[1] > viewport_center_position[1] + 20:
-		camera.drag_margin_top = 0.5
-		camera.drag_margin_bottom = -0.4
-	else:
-		camera.drag_margin_top = 0
-		camera.drag_margin_bottom = 0
-		camera.force_update_scroll()
+	var mouse_position = get_viewport().get_mouse_position() - viewport_center_position
+	camera.position = mouse_position / 3
 
-	#camera.position = get_input_direction()*50
 	move_and_slide(input_direction.normalized() * speed)
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
@@ -154,8 +131,6 @@ func absorb_life():
 			effects_player.play("absorb")
 		else:
 			effects_player.play("try_absorb")
-	#	print(overlapping_life_sources)
-	#	print(absorbed_life)
 
 
 func _on_absorbed_life_updated(life_source_life):
