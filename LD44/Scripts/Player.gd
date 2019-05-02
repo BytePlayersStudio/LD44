@@ -8,15 +8,14 @@ enum states {
 	DEAD
 }
 
-class_name player
+class_name Player
 
 
 onready var UI = Global.UI
 onready var camera : Camera2D = get_node("Camera2D")
-onready var camera_tween : Tween = get_node("Tween")
 onready var gun_pivot : Position2D = get_node("GunPivot")
 onready var gun_sprite : Sprite = get_node("GunPivot/GunPosition/Gun").get_child(0)
-onready var player_gun : gun = get_node("GunPivot/GunPosition/Gun")
+onready var player_gun : Gun = get_node("GunPivot/GunPosition/Gun")
 onready var absorbArea : Area2D =  get_node("AbsorbArea") 
 onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
 onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")

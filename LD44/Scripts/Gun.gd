@@ -2,7 +2,7 @@ extends Node2D
 
 signal gun_shot
 
-class_name gun
+class_name Gun
 
 export (PackedScene) var bullet_res
 export var cooldown : float = .5

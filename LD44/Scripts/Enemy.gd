@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal send_enemy_alive
 
-class_name enemy
+class_name Enemy
 
 enum states {
 	SPAWN,
@@ -28,7 +28,7 @@ onready var effects_player : AnimationPlayer = get_node("Effects/EffectsPlayer")
 onready var audio_player = get_node("AudioStreamPlayer")
 
 var current_state = null
-var player : player
+var player : Player
 var destination
 var path = []
 var possible_destinations = []

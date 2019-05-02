@@ -2,7 +2,7 @@ extends Area2D
 
 signal absorbed_life_updated(life_source_life)
 
-class_name life_source
+class_name LifeSource
 
 onready var collision_shape = get_node("CollisionShape2D")
 onready var life_source_sprite = get_node("LifeSourceSprite")
